@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pf_exec.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 15:56:22 by damouyal          #+#    #+#             */
+/*   Updated: 2020/01/21 15:56:39 by damouyal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pf_exec.h"
 
 int	pf_exec(t_pf_format *fmt, t_out_buffer *buf, va_list *pfargs)
@@ -11,7 +23,7 @@ int	pf_exec(t_pf_format *fmt, t_out_buffer *buf, va_list *pfargs)
 	cur = str_conv;
 	while (*cur)
 		if (*cur == fmt->char_conv)
-			break;
+			break ;
 		else
 			cur++;
 	return (conv[cur - str_conv](fmt, buf, pfargs));

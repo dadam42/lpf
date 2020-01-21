@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conv_str.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 17:22:07 by damouyal          #+#    #+#             */
+/*   Updated: 2020/01/21 17:25:53 by damouyal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "conv_str.h"
 #include "output_field.h"
 
-int conv_str(t_pf_format *fmt, t_out_buffer *buf, t_conv_str_util *util)
+int	conv_str(t_pf_format *fmt, t_out_buffer *buf, t_conv_str_util *util)
 {
 	int ret;
 

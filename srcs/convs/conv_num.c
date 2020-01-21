@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conv_num.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 17:20:15 by damouyal          #+#    #+#             */
+/*   Updated: 2020/01/21 17:21:20 by damouyal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "conv_num.h"
 #include "output_field.h"
 #include "format_rules.h"
@@ -18,7 +30,7 @@ int	conv_num(t_pf_format *fmt, t_out_buffer *buf, t_conv_num_util *util)
 		if ((fmt->flags & FMT_ZERO) && util->lprefix > 0)
 			util->mpad += fmt->width - util->lstr - util->lprefix;
 		else
-			util->lpad += fmt->width - util->lstr - util->lprefix - util->mpad; 
+			util->lpad += fmt->width - util->lstr - util->lprefix - util->mpad;
 	}
 	if (fmt->flags & FMT_MINUS)
 	{

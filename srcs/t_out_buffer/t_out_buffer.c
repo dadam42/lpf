@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_out_buffer.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 15:31:34 by damouyal          #+#    #+#             */
+/*   Updated: 2020/01/21 15:33:43 by damouyal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "t_out_buffer.h"
 #include "libft.h"
 #include <unistd.h>
@@ -12,7 +24,7 @@ static ssize_t	output(t_out_buffer *buf, char const *src, size_t size)
 			return (T_OUT_BUFFER_ERROR);
 		size -= rval;
 		src += rval;
-		buf->count +=  rval;
+		buf->count += rval;
 	}
 	return (buf->count);
 }
@@ -37,17 +49,16 @@ ssize_t			bufferize_buf(t_out_buffer *buf, char const *src, size_t size)
 		if (size == 0)
 			return (buf->count);
 		if (output(buf, buf->buf, BUFFER_SIZE) == T_OUT_BUFFER_ERROR)
-			break;
+			break ;
 		buf->cur = buf->buf;
 		while (size > BUFFER_SIZE)
 			if (output(buf, src, BUFFER_SIZE) == T_OUT_BUFFER_ERROR)
-				break;
+				break ;
 			else
 			{
 				size -= BUFFER_SIZE;
 				src += BUFFER_SIZE;
 			}
-
 	}
 	return (T_OUT_BUFFER_ERROR);
 }
@@ -61,7 +72,7 @@ ssize_t			bufferize_char(t_out_buffer *buf, char c, size_t count)
 		if (count == 0)
 			return (buf->count);
 		if (output(buf, buf->buf, BUFFER_SIZE) == T_OUT_BUFFER_ERROR)
-			break;
+			break ;
 		buf->cur = buf->buf;
 	}
 	return (T_OUT_BUFFER_ERROR);
@@ -75,4 +86,3 @@ ssize_t			t_out_buffer_flush(t_out_buffer *buf)
 	buf->cur = buf->buf;
 	return (ret);
 }
-
