@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdio.h>
 
-#undef CONV_SELECTED
 #if defined(CONV_S) && !defined(CONV_SELECTED)
 # define CONV_SELECTED
 # define FLAGS_A {"", "-", "0"}

@@ -1,62 +1,54 @@
-NAME=libft_printf.a#
-SRCS_DIRS=srcs#
-ADD_SRCS=#Not handled
-OBJS_DIR=objs#
-INC_DIRS=srcs/includes#
-HEADER_DIR=includes#
-INSTALL_HEADER=srcs/includes/ft_printf.h#
-LIBS_DIRS=libs/libft#
-LIBS=ft#
-INC_LIBS=libs/libft/includes#
-MY_CFLAGS=-Wall -Wextra#
-MODULES=libft#
-CC=gcc#
-########
-LDFLAGS+=$(LIBS_DIRS:%=-L%)#
-LDLIBS+=$(LIBS:%=-l%)#
-CFLAGS+=$(MY_CFLAGS)#
-CPPFLAGS+=$(INC_DIRS:%=-I%) $(INC_LIBS:%=-I%)#
-SRCS=$(foreach mdir, $(SRCS_DIRS),$(wildcard $(mdir)/**/*.c))#
-SRCS_DIRS_=$(sort $(dir $(SRCS)))#
-SRCS_=$(sort $(notdir $(SRCS)))#
-define mydef
-$1=$2
-endef
-#$(if $(OBJS_DIR),$(info toto),$(info echo tata)) << wtf?
-OBJS=$(SRCS_:%.c=$(OBJS_DIR)/%.o)#
-VPATH+=$(SRCS_DIRS_) $(OBJS_DIR)#
-HEADER_NAME=$(notdir $(INSTALL_HEADER))#
+TARGET=libft_printf.a
+INSTALL_DIR=includes
+TARGET_DIR=.
+HEADER_TO_INSTALL=ft_printf.h
+SRCS=srcs/convs/conv_c.c srcs/convs/conv_d.c srcs/convs/conv_error.c srcs/convs/conv_num.c srcs/convs/conv_p.c srcs/convs/conv_pe.c srcs/convs/conv_s.c srcs/convs/conv_str.c srcs/convs/conv_u.c srcs/convs/conv_ubase.c srcs/convs/conv_xl.c srcs/convs/conv_xu.c srcs/format/format_rules.c srcs/output_field/output_field.c srcs/parser/pf_parser.c srcs/pf_exec.c srcs/pf_functions.c srcs/t_out_buffer/t_out_buffer.c
+CFLAGS=-Wall -Wextra -Werror
+CPPFLAGS=-Isrcs/includes -Ilibs/libft/includes
+OBJS=$(SRCS:%.c=%.o)
+LIBS=libft
+LIBS_DIR=libs
+LIBS_INCLUDE=libft/includes
 
-.PHONY: all#
-all: $(NAME)#
+DEP_DIR=.dep
+DEP_FLAGS=-MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
 
-$(NAME):$(OBJS) libft#
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
-	cp $(INSTALL_HEADER) $(HEADER_DIR)/$(HEADER_NAME)
+.PHONY: all
+all: $(LIBS) $(TARGET) install
 
-$(OBJS_DIR)/%.o: %.c#
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+$(TARGET): $(OBJS)
+	ar rc $(TARGET) $(OBJS)
+	ranlib $(TARGET)
 
-.PHONY: clean#
-clean:#
-	$(RM) $(OBJS)
+.PHONY: install
+install:
+	cp srcs/includes/$(HEADER_TO_INSTALL) $(INSTALL_DIR)/$(HEADER_TO_INSTALL)
 
-.PHONY: fclean#
-fclean: clean#
-	$(RM) $(NAME)
-	$(RM) $(HEADER_DIR)/$(HEADER_NAME)
+.PHONY: uninstall
+uninstall:
+	rm -f $(INSTALL_DIR)/$(HEADER_TO_INSTALL)
 
-.PHONY: re#
-re: fclean all#
+.PHONY: clean
+clean:
+	rm -f $(OBJS)
+	$(MAKE) -C $(LIBS_DIR)/libft clean
+
+.PHONY: fclean
+fclean: clean
+	rm -f $(TARGET)
+	$(MAKE) -C $(LIBS_DIR)/libft fclean
 
 .PHONY: libft
 libft:
-	$(MAKE) -C libs/libft
+	$(MAKE) -C $(LIBS_DIR)/libft
 
-#define addmodrule
-#.PHONY: $1
-#$1:
-#	$(MAKE) -C $1
-#endef
-#$(foreach mod,$(MODULES),$(call addmodrule,$(mod)))#
+#%.o:%.c
+#%.o:%.c $(DEP_DIR)/%.d | $(DEP_DIR)
+#	$(CC) $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) -c $<
+
+$(DEP_DIR): ; @mkdir -p $@
+
+DEPFILES:= $(SRCS:%.c=$(DEPDIR)/%.d)
+$(DEPFILES):
+
+include $(wildcard $(DEPFILES))
