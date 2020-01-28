@@ -2,12 +2,22 @@
 #include <string.h>
 #include <stdio.h>
 
+#if defined(CONV_C) && !defined(CONV_SELECTED)
+# define CONV_SELECTED
+# define FLAGS_A {"", "-", "0"}
+# define WIDTH_A {"", "3", "8", "10", "-1"}
+# define PREC_A {"", ".", ".1", ".12", ".-4"}
+# define PFARG_A {'e', '\n'}
+# define TPFARG char
+# define STRFMT "c"
+#endif
+
 #if defined(CONV_S) && !defined(CONV_SELECTED)
 # define CONV_SELECTED
 # define FLAGS_A {"", "-", "0"}
 # define WIDTH_A {"", "3", "8", "10", "-1"}
 # define PREC_A {"", ".", ".1", ".12", ".-4"}
-# define PFARG_A {0, "", "12345"}
+# define PFARG_A {0, "", "123456789"}
 # define TPFARG char*
 # define STRFMT "s"
 #endif
@@ -110,7 +120,7 @@ int main()
 		strcat(message,"<%");
 		strcat(message,format);
 		strcat(message, ">");
-#if defined(FAKE) && defined(ORIG)
+# if defined(FAKE) && defined(ORIG)
 		printf("fake : "); fflush(stdout);
 		fret = ft_printf(message, util->pfarg);
 		printf("\norig : "); fflush(stdout);
@@ -121,19 +131,19 @@ int main()
 			passed++;
 # else
 printf("output : "); fflush(stdout);
-# ifdef FAKE
+#  ifdef FAKE
 oret = ft_printf(message, util->pfarg);
-# endif
-# ifdef ORIG
+#  endif
+#  ifdef ORIG
 oret = printf(message, util->pfarg);
-# endif
+#  endif
 printf(" : %d\n",oret);
-#endif
+# endif
 	}
-#if defined(FAKE) && defined(ORIG)
+# if defined(FAKE) && defined(ORIG)
 	printf("***** ABSTRACT ******\n");
 	printf("%d/%d", passed, tested);
-#endif
+# endif
 #endif
 	return (0);
 }

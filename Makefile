@@ -1,54 +1,73 @@
-TARGET=libft_printf.a
+NAME=libft_printf.a
 INSTALL_DIR=includes
-TARGET_DIR=.
-HEADER_TO_INSTALL=ft_printf.h
-SRCS=srcs/convs/conv_c.c srcs/convs/conv_d.c srcs/convs/conv_error.c srcs/convs/conv_num.c srcs/convs/conv_p.c srcs/convs/conv_pe.c srcs/convs/conv_s.c srcs/convs/conv_str.c srcs/convs/conv_u.c srcs/convs/conv_ubase.c srcs/convs/conv_xl.c srcs/convs/conv_xu.c srcs/format/format_rules.c srcs/output_field/output_field.c srcs/parser/pf_parser.c srcs/pf_exec.c srcs/pf_functions.c srcs/t_out_buffer/t_out_buffer.c
+INSTALL_DIR?=.
+SRCS_DIR=srcs
+HEADERS_DIR=$(SRCS_DIR)/includes
+SRCS_FILES=srcs/convs/conv_c.c srcs/convs/conv_d.c srcs/convs/conv_error.c srcs/convs/conv_num.c srcs/convs/conv_p.c srcs/convs/conv_pe.c srcs/convs/conv_s.c srcs/convs/conv_str.c srcs/convs/conv_u.c srcs/convs/conv_ubase.c srcs/convs/conv_xl.c srcs/convs/conv_xu.c srcs/format/format_rules.c srcs/output_field/output_field.c srcs/parser/pf_parser.c srcs/pf_exec.c srcs/pf_functions.c srcs/t_out_buffer/t_out_buffer.c
+OBJS_DIR=objs#
+ifndef OBJS_DIR
+OBJS_DIR=$(SRCS_DIR)
+endif
+OBJS_FILES=$(SRCS_FILES:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
+#Handling dependancies : 
+DEP_DIR_ROOT=.dep
+DEP_FILES=$(SRCS_FILES:$(SRCS_DIR)/%.c=$(DEP_DIR_ROOT)/%.d)
+DEP_DIRS_ =$(dir $(DEP_FILES))
+uniq=$(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
+DEP_DIRS=$(sort $(call uniq,$(DEP_DIRS_)))
+DEP_FLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR_ROOT)/$*.d
+#Redefining Compilation process to handle dependancies:
+COMPILE.c=$(CC) $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
 CFLAGS=-Wall -Wextra -Werror
-CPPFLAGS=-Isrcs/includes -Ilibs/libft/includes
-OBJS=$(SRCS:%.c=%.o)
-LIBS=libft
-LIBS_DIR=libs
-LIBS_INCLUDE=libft/includes
+CPPFLAGS=-I$(HEADERS_DIR)
+#Handling additional libraries
+LIBS=libs/libft
+LIBS_HEADERS_DIRS=libs/libft/includes
+LIBS_=$(LIBS:lib%=-l%)
+CPPFLAGS+=$(foreach hdir,$(LIBS_HEADERS_DIRS),-I$(hdir))
 
-DEP_DIR=.dep
-DEP_FLAGS=-MT $@ -MMD -MP -MF $(DEP_DIR)/$*.d
+define librule
+$1.a: ; $(MAKE) -C $1
+endef
 
 .PHONY: all
-all: $(LIBS) $(TARGET) install
+all: $(LIBS:%=%.a) $(NAME) install
 
-$(TARGET): $(OBJS)
-	ar rc $(TARGET) $(OBJS)
-	ranlib $(TARGET)
+$(NAME):$(OBJS_FILES)
+	ar rc $(NAME) $(OBJS_FILES)
+	ranlib $(NAME)
+
+$(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c $(DEP_DIR_ROOT)/%.d | depdirs objdirs
+	$(COMPILE.c) $(OUTPUT_OPTION) $<
 
 .PHONY: install
 install:
-	cp srcs/includes/$(HEADER_TO_INSTALL) $(INSTALL_DIR)/$(HEADER_TO_INSTALL)
+	cp srcs/includes/ft_printf.h $(INSTALL_DIR)
 
-.PHONY: uninstall
-uninstall:
-	rm -f $(INSTALL_DIR)/$(HEADER_TO_INSTALL)
-
-.PHONY: clean
+.PHONY:clean
 clean:
-	rm -f $(OBJS)
-	$(MAKE) -C $(LIBS_DIR)/libft clean
+	rm -f $(OBJS_FILES)
 
-.PHONY: fclean
-fclean: clean
-	rm -f $(TARGET)
-	$(MAKE) -C $(LIBS_DIR)/libft fclean
+.PHONY:depclean
+depclean:
+	rm -rf $(DEP_DIR_ROOT)	
 
-.PHONY: libft
-libft:
-	$(MAKE) -C $(LIBS_DIR)/libft
+.PHONY:fclean
+fclean:clean depclean
+	rm -f $(NAME)
+	rm -f $(INSTALL_DIR)/ft_printf.h
+	$(foreach ldir,$(LIBS),$(MAKE) -C $(ldir) fclean;)
 
-#%.o:%.c
-#%.o:%.c $(DEP_DIR)/%.d | $(DEP_DIR)
-#	$(CC) $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) -c $<
+$(foreach ldir,$(LIBS),$(call librule,$(ldir)))
 
-$(DEP_DIR): ; @mkdir -p $@
+.PHONY:re
+re:fclean all
 
-DEPFILES:= $(SRCS:%.c=$(DEPDIR)/%.d)
-$(DEPFILES):
+.PHONY: depdirs
+depdirs: ; @$(foreach mydir,$(DEP_DIRS),mkdir -p $(mydir);)
 
-include $(wildcard $(DEPFILES))
+.PHONY: objdirs
+objdirs: ; @$(foreach mydir,$(DEP_DIRS),mkdir -p $(mydir:$(DEP_DIR_ROOT)/%=$(OBJS_DIR)/%);)
+$(DEP_FILES):
+
+include $(wildcard $(DEP_FILES))
