@@ -1,0 +1,358 @@
+Test #1 : "<u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #2 : "<u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #3 : "<u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #4 : "<.u>" with |arg| ~ |0| :
+output : <> : 2
+Test #5 : "<.u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #6 : "<.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #7 : "<.1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #8 : "<.1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #9 : "<.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #10 : "<.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #11 : "<.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #12 : "<.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #13 : "<3u>" with |arg| ~ |0| :
+output : <  0> : 5
+Test #14 : "<3u>" with |arg| ~ |42| :
+output : < 42> : 5
+Test #15 : "<3u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #16 : "<3.u>" with |arg| ~ |0| :
+output : <   > : 5
+Test #17 : "<3.u>" with |arg| ~ |42| :
+output : < 42> : 5
+Test #18 : "<3.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #19 : "<3.1u>" with |arg| ~ |0| :
+output : <  0> : 5
+Test #20 : "<3.1u>" with |arg| ~ |42| :
+output : < 42> : 5
+Test #21 : "<3.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #22 : "<3.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #23 : "<3.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #24 : "<3.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #25 : "<8u>" with |arg| ~ |0| :
+output : <       0> : 10
+Test #26 : "<8u>" with |arg| ~ |42| :
+output : <      42> : 10
+Test #27 : "<8u>" with |arg| ~ |1234567| :
+output : < 1234567> : 10
+Test #28 : "<8.u>" with |arg| ~ |0| :
+output : <        > : 10
+Test #29 : "<8.u>" with |arg| ~ |42| :
+output : <      42> : 10
+Test #30 : "<8.u>" with |arg| ~ |1234567| :
+output : < 1234567> : 10
+Test #31 : "<8.1u>" with |arg| ~ |0| :
+output : <       0> : 10
+Test #32 : "<8.1u>" with |arg| ~ |42| :
+output : <      42> : 10
+Test #33 : "<8.1u>" with |arg| ~ |1234567| :
+output : < 1234567> : 10
+Test #34 : "<8.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #35 : "<8.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #36 : "<8.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #37 : "<10u>" with |arg| ~ |0| :
+output : <         0> : 12
+Test #38 : "<10u>" with |arg| ~ |42| :
+output : <        42> : 12
+Test #39 : "<10u>" with |arg| ~ |1234567| :
+output : <   1234567> : 12
+Test #40 : "<10.u>" with |arg| ~ |0| :
+output : <          > : 12
+Test #41 : "<10.u>" with |arg| ~ |42| :
+output : <        42> : 12
+Test #42 : "<10.u>" with |arg| ~ |1234567| :
+output : <   1234567> : 12
+Test #43 : "<10.1u>" with |arg| ~ |0| :
+output : <         0> : 12
+Test #44 : "<10.1u>" with |arg| ~ |42| :
+output : <        42> : 12
+Test #45 : "<10.1u>" with |arg| ~ |1234567| :
+output : <   1234567> : 12
+Test #46 : "<10.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #47 : "<10.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #48 : "<10.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #49 : "<-1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #50 : "<-1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #51 : "<-1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #52 : "<-1.u>" with |arg| ~ |0| :
+output : < > : 3
+Test #53 : "<-1.u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #54 : "<-1.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #55 : "<-1.1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #56 : "<-1.1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #57 : "<-1.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #58 : "<-1.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #59 : "<-1.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #60 : "<-1.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #61 : "<-u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #62 : "<-u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #63 : "<-u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #64 : "<-.u>" with |arg| ~ |0| :
+output : <> : 2
+Test #65 : "<-.u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #66 : "<-.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #67 : "<-.1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #68 : "<-.1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #69 : "<-.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #70 : "<-.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #71 : "<-.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #72 : "<-.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #73 : "<-3u>" with |arg| ~ |0| :
+output : <0  > : 5
+Test #74 : "<-3u>" with |arg| ~ |42| :
+output : <42 > : 5
+Test #75 : "<-3u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #76 : "<-3.u>" with |arg| ~ |0| :
+output : <   > : 5
+Test #77 : "<-3.u>" with |arg| ~ |42| :
+output : <42 > : 5
+Test #78 : "<-3.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #79 : "<-3.1u>" with |arg| ~ |0| :
+output : <0  > : 5
+Test #80 : "<-3.1u>" with |arg| ~ |42| :
+output : <42 > : 5
+Test #81 : "<-3.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #82 : "<-3.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #83 : "<-3.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #84 : "<-3.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #85 : "<-8u>" with |arg| ~ |0| :
+output : <0       > : 10
+Test #86 : "<-8u>" with |arg| ~ |42| :
+output : <42      > : 10
+Test #87 : "<-8u>" with |arg| ~ |1234567| :
+output : <1234567 > : 10
+Test #88 : "<-8.u>" with |arg| ~ |0| :
+output : <        > : 10
+Test #89 : "<-8.u>" with |arg| ~ |42| :
+output : <42      > : 10
+Test #90 : "<-8.u>" with |arg| ~ |1234567| :
+output : <1234567 > : 10
+Test #91 : "<-8.1u>" with |arg| ~ |0| :
+output : <0       > : 10
+Test #92 : "<-8.1u>" with |arg| ~ |42| :
+output : <42      > : 10
+Test #93 : "<-8.1u>" with |arg| ~ |1234567| :
+output : <1234567 > : 10
+Test #94 : "<-8.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #95 : "<-8.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #96 : "<-8.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #97 : "<-10u>" with |arg| ~ |0| :
+output : <0         > : 12
+Test #98 : "<-10u>" with |arg| ~ |42| :
+output : <42        > : 12
+Test #99 : "<-10u>" with |arg| ~ |1234567| :
+output : <1234567   > : 12
+Test #100 : "<-10.u>" with |arg| ~ |0| :
+output : <          > : 12
+Test #101 : "<-10.u>" with |arg| ~ |42| :
+output : <42        > : 12
+Test #102 : "<-10.u>" with |arg| ~ |1234567| :
+output : <1234567   > : 12
+Test #103 : "<-10.1u>" with |arg| ~ |0| :
+output : <0         > : 12
+Test #104 : "<-10.1u>" with |arg| ~ |42| :
+output : <42        > : 12
+Test #105 : "<-10.1u>" with |arg| ~ |1234567| :
+output : <1234567   > : 12
+Test #106 : "<-10.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #107 : "<-10.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #108 : "<-10.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #109 : "<--1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #110 : "<--1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #111 : "<--1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #112 : "<--1.u>" with |arg| ~ |0| :
+output : < > : 3
+Test #113 : "<--1.u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #114 : "<--1.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #115 : "<--1.1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #116 : "<--1.1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #117 : "<--1.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #118 : "<--1.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #119 : "<--1.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #120 : "<--1.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #121 : "<0u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #122 : "<0u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #123 : "<0u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #124 : "<0.u>" with |arg| ~ |0| :
+output : <> : 2
+Test #125 : "<0.u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #126 : "<0.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #127 : "<0.1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #128 : "<0.1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #129 : "<0.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #130 : "<0.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #131 : "<0.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #132 : "<0.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #133 : "<03u>" with |arg| ~ |0| :
+output : <000> : 5
+Test #134 : "<03u>" with |arg| ~ |42| :
+output : <042> : 5
+Test #135 : "<03u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #136 : "<03.u>" with |arg| ~ |0| :
+output : <   > : 5
+Test #137 : "<03.u>" with |arg| ~ |42| :
+output : < 42> : 5
+Test #138 : "<03.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #139 : "<03.1u>" with |arg| ~ |0| :
+output : <  0> : 5
+Test #140 : "<03.1u>" with |arg| ~ |42| :
+output : < 42> : 5
+Test #141 : "<03.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #142 : "<03.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #143 : "<03.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #144 : "<03.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #145 : "<08u>" with |arg| ~ |0| :
+output : <00000000> : 10
+Test #146 : "<08u>" with |arg| ~ |42| :
+output : <00000042> : 10
+Test #147 : "<08u>" with |arg| ~ |1234567| :
+output : <01234567> : 10
+Test #148 : "<08.u>" with |arg| ~ |0| :
+output : <        > : 10
+Test #149 : "<08.u>" with |arg| ~ |42| :
+output : <      42> : 10
+Test #150 : "<08.u>" with |arg| ~ |1234567| :
+output : < 1234567> : 10
+Test #151 : "<08.1u>" with |arg| ~ |0| :
+output : <       0> : 10
+Test #152 : "<08.1u>" with |arg| ~ |42| :
+output : <      42> : 10
+Test #153 : "<08.1u>" with |arg| ~ |1234567| :
+output : < 1234567> : 10
+Test #154 : "<08.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #155 : "<08.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #156 : "<08.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #157 : "<010u>" with |arg| ~ |0| :
+output : <0000000000> : 12
+Test #158 : "<010u>" with |arg| ~ |42| :
+output : <0000000042> : 12
+Test #159 : "<010u>" with |arg| ~ |1234567| :
+output : <0001234567> : 12
+Test #160 : "<010.u>" with |arg| ~ |0| :
+output : <          > : 12
+Test #161 : "<010.u>" with |arg| ~ |42| :
+output : <        42> : 12
+Test #162 : "<010.u>" with |arg| ~ |1234567| :
+output : <   1234567> : 12
+Test #163 : "<010.1u>" with |arg| ~ |0| :
+output : <         0> : 12
+Test #164 : "<010.1u>" with |arg| ~ |42| :
+output : <        42> : 12
+Test #165 : "<010.1u>" with |arg| ~ |1234567| :
+output : <   1234567> : 12
+Test #166 : "<010.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #167 : "<010.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14
+Test #168 : "<010.12u>" with |arg| ~ |1234567| :
+output : <000001234567> : 14
+Test #169 : "<0-1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #170 : "<0-1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #171 : "<0-1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #172 : "<0-1.u>" with |arg| ~ |0| :
+output : < > : 3
+Test #173 : "<0-1.u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #174 : "<0-1.u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #175 : "<0-1.1u>" with |arg| ~ |0| :
+output : <0> : 3
+Test #176 : "<0-1.1u>" with |arg| ~ |42| :
+output : <42> : 4
+Test #177 : "<0-1.1u>" with |arg| ~ |1234567| :
+output : <1234567> : 9
+Test #178 : "<0-1.12u>" with |arg| ~ |0| :
+output : <000000000000> : 14
+Test #179 : "<0-1.12u>" with |arg| ~ |42| :
+output : <000000000042> : 14

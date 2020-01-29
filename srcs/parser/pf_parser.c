@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:48:44 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/21 15:49:25 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 22:42:24 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,24 @@ static void	parse_flags(char const **str, t_pf_format *fmt)
 	}
 }
 
+static void	parse_modifiers(char const **str, t_pf_format *fmt)
+{
+	char mem;
+
+	fmt->mod = 0;
+	if (**str == 'h' || **str == 'l')
+	{
+		mem = **str;
+		(*str)++;
+		if (**str == mem)
+		{
+			(*str)++;
+			fmt->mod = 1;
+		}
+		fmt->mod += (mem = 'h' ? FMT_MOD_H : FMT_MOD_L);
+	}
+}
+
 void		pf_parse(char const **str, t_pf_format *fmt, va_list *pfargs)
 {
 	(*str)++;
@@ -66,6 +84,7 @@ void		pf_parse(char const **str, t_pf_format *fmt, va_list *pfargs)
 		(*str)++;
 		set_value(&fmt->prec, str, pfargs);
 	}
+	parse_modifiers(str, fmt);
 	fmt->char_conv = **str;
 	if (**str)
 		(*str)++;

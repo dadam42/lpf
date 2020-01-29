@@ -4,10 +4,8 @@
 int main()
 {
 	int oret, fret;
-	int no, nf;
-	fret = ft_printf("uyi %n\n", &nf);
-	oret = printf("uyi %n\n", &no);
-	printf("nf : %d no : %d\n", nf, no);
+	fret = ft_printf("%d\n", -12345);
+	oret = printf("%d\n", -12345);
 	if (oret == fret)
 	{
 		printf("ret Ok.\n");

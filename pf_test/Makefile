@@ -44,8 +44,8 @@ endef
 
 FILES=$(CONVS:%=conv_%.fake.exe) $(CONVS:%=conv_%.fake) $(CONVS:%=conv_%.orig.exe) $(CONVS:%=conv_%.orig) $(CONVS:%=conv_%.both.exe) $(CONVS:%=test_%) simple
 
-simple:simple.c
-	gcc -I../includes -Wall -Wextra simple.c -lftprintf -L.. -lft -L../libft -o simple
+simple:simple.c libftprintf
+	gcc -I../includes -Wall -Wextra simple.c -lftprintf -L$(DIRLIBFTPRINTF) -lft -L$(DIRLIBFTPRINTF)/libft -o simple
 
 $(foreach conv,$(CONVS),$(eval $(call conv.fake.exe.rule,$(conv))))
 

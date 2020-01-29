@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 17:12:40 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/29 17:48:26 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 21:45:45 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ int	conv_ubase(t_pf_format *fmt, t_out_buffer *buf,
 		util.lstr = 0;
 	else
 		util.lstr = ft_strlen(util.str);
+	if (fmt->flags & FMT_SHARP)
+	{
+		if (fmt->char_conv == 'x' || fmt->char_conv == 'X')
+		{
+			util.lprefix = 2;
+			util.prefix = "0X";
+			if (fmt->char_conv == 'x')
+				util.prefix = "0x";
+		}
+	}
 	ret = conv_num(fmt, buf, &util);
 	free(util.str);
 	return (ret);
