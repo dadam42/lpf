@@ -1,7 +1,7 @@
 CONVS=c s d xl xu u i p
-
+DIRLIBFTPRINTF=..
 define conv.fake.exe.rule
-conv_$1.fake.exe: ft_printf.c;gcc -I../includes -I../libs/libft/includes -Wall -Wextra -Werror -DCONV_$(shell echo $1 | tr a-z A-Z) -DFAKE ft_printf.c -lft_printf -L.. -lft -L../libs/libft -o conv_$1.fake.exe
+conv_$1.fake.exe: ft_printf.c libftprintf;gcc -I../includes -I../libs/libft/includes -Wall -Wextra -Werror -DCONV_$(shell echo $1 | tr a-z A-Z) -DFAKE ft_printf.c -lftprintf -L.. -lft -L$$(DIRLIBFTPRINTF)/libft -o conv_$1.fake.exe
  
 endef
 
@@ -12,8 +12,8 @@ conv_$1.fake:conv_$1.fake.exe
 endef
 
 define conv.orig.exe.rule
-conv_$1.orig.exe:ft_printf.c
-	gcc -I../includes -I../libs/libft/includes -Wall -Wextra -Werror -DCONV_$(shell echo $1 | tr a-z A-Z) -DORIG ft_printf.c -lft_printf -L.. -lft -L../libs/libft -o conv_$1.orig.exe
+conv_$1.orig.exe:ft_printf.c libftprintf
+	gcc -I../includes -I../libs/libft/includes -Wall -Wextra -Werror -DCONV_$(shell echo $1 | tr a-z A-Z) -DORIG ft_printf.c -lftprintf -L.. -lft -L$$(DIRLIBFTPRINTF)/libft -o conv_$1.orig.exe
 
 endef
 
@@ -24,8 +24,8 @@ conv_$1.orig:conv_$1.orig.exe
 endef
 
 define conv.both.exe.rule
-conv_$1.both.exe:
-	gcc -I../includes -I../libs/libft/includes -Wall -Wextra -Werror -DCONV_$(shell echo $1 | tr a-z A-Z) -DORIG -DFAKE ft_printf.c -lft_printf -L.. -lft -L../libs/libft -o conv_$1.both.exe
+conv_$1.both.exe:ft_printf.c libftprintf
+	gcc -I../includes -I../libs/libft/includes -Wall -Wextra -Werror -DCONV_$(shell echo $1 | tr a-z A-Z) -DORIG -DFAKE ft_printf.c -lftprintf -L.. -lft -L$$(DIRLIBFTPRINTF)/libft -o conv_$1.both.exe
 
 endef
 
@@ -45,7 +45,7 @@ endef
 FILES=$(CONVS:%=conv_%.fake.exe) $(CONVS:%=conv_%.fake) $(CONVS:%=conv_%.orig.exe) $(CONVS:%=conv_%.orig) $(CONVS:%=conv_%.both.exe) $(CONVS:%=test_%) simple
 
 simple:simple.c
-	gcc -g -I../includes -Wall -Wextra -Werror simple.c -lft_printf -L.. -lft -L../libs/libft -o simple
+	gcc -I../includes -Wall -Wextra simple.c -lftprintf -L.. -lft -L../libft -o simple
 
 $(foreach conv,$(CONVS),$(eval $(call conv.fake.exe.rule,$(conv))))
 
@@ -65,3 +65,7 @@ $(foreach conv,$(CONVS),$(eval $(call result.rule,$(conv))))
 .PHONY:clean
 clean:
 	rm -f $(FILES)
+
+.PHONY:libftprintf
+libftprintf:
+	$(MAKE) -C $(DIRLIBFTPRINTF)
