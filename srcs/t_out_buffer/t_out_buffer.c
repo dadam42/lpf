@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:31:34 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/21 15:33:43 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:33:41 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ ssize_t			bufferize_char(t_out_buffer *buf, char c, size_t count)
 {
 	while (1)
 	{
-		while ((buf->cur - buf->buf < BUFFER_SIZE) && count-- > 0)
+		while ((buf->cur - buf->buf < BUFFER_SIZE) && count != 0)
+		{
 			*buf->cur++ = c;
+			count--;
+		}
 		if (count == 0)
 			return (buf->count);
 		if (output(buf, buf->buf, BUFFER_SIZE) == T_OUT_BUFFER_ERROR)

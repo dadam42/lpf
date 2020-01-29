@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   output_field.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/29 16:12:45 by damouyal          #+#    #+#             */
+/*   Updated: 2020/01/29 18:49:13 by damouyal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "output_field.h"
+
 static ssize_t	output_char(t_out_buffer *buf, va_list *pargs)
 {
 	char	mychar;
@@ -19,7 +32,7 @@ static ssize_t	output_buf(t_out_buffer *buf, va_list *pargs)
 	return (bufferize_buf(buf, str, len));
 }
 
-int			output_field(t_out_buffer *buf, int n, ...)
+int				output_field(t_out_buffer *buf, int n, ...)
 {
 	static t_output	output[2] = {output_char, output_buf};
 	va_list			args;
@@ -34,7 +47,7 @@ int			output_field(t_out_buffer *buf, int n, ...)
 		if (output[(int)type](buf, &args) == T_OUT_BUFFER_ERROR)
 		{
 			ret = OUTPUT_FIELD_ERROR;
-			break;
+			break ;
 		}
 		n--;
 	}

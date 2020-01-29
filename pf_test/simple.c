@@ -4,8 +4,15 @@
 int main()
 {
 	int oret, fret;
-	oret = printf("toto\n");
-	fret = ft_printf("toto\n");
-	printf("%d = %d ?\n", oret, fret);
+	fret = ft_printf("%%\n");
+	oret = printf("%%\n");
+	if (oret == fret)
+	{
+		printf("ret Ok.\n");
+	}
+	else
+	{
+		printf("fret = %d\noret = %d\n", fret, oret);
+	}
 	return (0);
 }

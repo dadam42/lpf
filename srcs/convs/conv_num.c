@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 17:20:15 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/21 17:21:20 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:28:31 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "output_field.h"
 #include "format_rules.h"
 
-int	conv_num(t_pf_format *fmt, t_out_buffer *buf, t_conv_num_util *util)
+int			conv_num(t_pf_format *fmt, t_out_buffer *buf, t_conv_num_util *util)
 {
 	format_numeric_rule(fmt);
 	util->rbg = ' ';

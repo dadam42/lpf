@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:53:12 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/21 16:54:26 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:39:41 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@ int	conv_c(t_pf_format *fmt, t_out_buffer *buf, va_list *pfargs)
 	c = (char)va_arg(*pfargs, int);
 	util.str = &c;
 	util.len = 1;
+	if ((fmt->flags & FMT_PREC) && (fmt->prec == 0))
+		fmt->prec = 1;
 	return (conv_str(fmt, buf, &util));
 }

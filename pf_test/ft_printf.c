@@ -6,7 +6,7 @@
 # define CONV_SELECTED
 # define FLAGS_A {"", "-", "0"}
 # define WIDTH_A {"", "3", "8", "10", "-1"}
-# define PREC_A {"", ".", ".1", ".12", ".-4"}
+# define PREC_A {"", ".", ".1", ".12"}
 # define PFARG_A {'e', '\n'}
 # define TPFARG char
 # define STRFMT "c"
@@ -16,20 +16,65 @@
 # define CONV_SELECTED
 # define FLAGS_A {"", "-", "0"}
 # define WIDTH_A {"", "3", "8", "10", "-1"}
-# define PREC_A {"", ".", ".1", ".12", ".-4"}
+# define PREC_A {"", ".", ".1", ".12"}
 # define PFARG_A {0, "", "123456789"}
 # define TPFARG char*
 # define STRFMT "s"
 #endif
 
-#if defined(CONV_D) && !defined(CONV_SELECTED)
+#if (defined(CONV_D) || defined(CONV_I)) && !defined(CONV_SELECTED)
 # define CONV_SELECTED
 # define FLAGS_A {"", "-", "0"}
 # define WIDTH_A {"", "3", "8", "10", "-1"}
-# define PREC_A {"", ".", ".1", ".12", ".-4"}
+# define PREC_A {"", ".", ".1", ".12"}
 # define PFARG_A {0, 42, -12345687}
 # define TPFARG int
-# define STRFMT "d"
+# if defined(CONV_D)
+#  define STRFMT "d"
+# endif
+# if defined(CONV_I)
+#  define STRFMT "i"
+# endif
+#endif
+
+#if defined(CONV_U) && !defined(CONV_SELECTED)
+# define CONV_SELECTED
+# define FLAGS_A {"", "-", "0"}
+# define WIDTH_A {"", "3", "8", "10", "-1"}
+# define PREC_A {"", ".", ".1", ".12"}
+# define PFARG_A {0, 42, 1234567}
+# define TPFARG int
+# define STRFMT "u"
+#endif
+
+#if defined(CONV_XL) && !defined(CONV_SELECTED)
+# define CONV_SELECTED
+# define FLAGS_A {"", "-", "0"}
+# define WIDTH_A {"", "3", "8", "10", "-1"}
+# define PREC_A {"", ".", ".1", ".12"}
+# define PFARG_A {0, 42, -12345687}
+# define TPFARG int
+# define STRFMT "X"
+#endif
+
+#if defined(CONV_XU) && !defined(CONV_SELECTED)
+# define CONV_SELECTED
+# define FLAGS_A {"", "-", "0"}
+# define WIDTH_A {"", "3", "8", "10", "-1"}
+# define PREC_A {"", ".", ".1", ".12"}
+# define PFARG_A {0, 42, -12345687}
+# define TPFARG int
+# define STRFMT "x"
+#endif
+
+#if defined(CONV_P) && !defined(CONV_SELECTED)
+# define CONV_SELECTED
+# define FLAGS_A {"", "-", "0"}
+# define WIDTH_A {"", "3", "8", "10", "-1"}
+# define PREC_A {"", ".", ".1", ".12"}
+# define PFARG_A {0, (void*)123458}
+# define TPFARG void*
+# define STRFMT "p"
 #endif
 
 void tpfargtoa(TPFARG pfarg, char *buf)

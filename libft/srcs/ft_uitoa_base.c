@@ -6,13 +6,14 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 21:41:23 by damouyal          #+#    #+#             */
-/*   Updated: 2019/11/13 10:36:38 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:33:03 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_setup(unsigned int d, unsigned short mbase, int *div)
+static char	*ft_setup(unsigned long d, unsigned short mbase
+						, unsigned long *div)
 {
 	size_t	len;
 
@@ -26,10 +27,10 @@ static char	*ft_setup(unsigned int d, unsigned short mbase, int *div)
 	return (malloc((len + 1) * sizeof(char)));
 }
 
-char		*ft_uitoa_base(unsigned int d, char const *base)
+char		*ft_uitoa_base(unsigned long d, char const *base)
 {
 	unsigned short	mbase;
-	int				div;
+	unsigned long	div;
 	char			*fwd_ret;
 	char			*ret;
 	unsigned int	q;

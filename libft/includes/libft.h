@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 17:01:38 by damouyal          #+#    #+#             */
-/*   Updated: 2019/11/12 22:27:03 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:22:07 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_ltoa(long n);
 char				*ft_itoa_base(int n, char const *base);
-char				*ft_uitoa_base(unsigned int n, char const *base);
+char				*ft_uitoa_base(unsigned long n, char const *base);
 char				*ft_ptrtoa(uintptr_t p);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);

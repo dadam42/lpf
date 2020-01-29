@@ -1,4 +1,4 @@
-NAME=libft_printf.a
+NAME=libftprintf.a
 INSTALL_DIR=includes
 INSTALL_DIR?=.
 SRCS_DIR=srcs
@@ -17,12 +17,12 @@ uniq=$(if $1,$(firstword $1) $(call uniq,$(filter-out $(firstword $1),$1)))
 DEP_DIRS=$(sort $(call uniq,$(DEP_DIRS_)))
 DEP_FLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR_ROOT)/$*.d
 #Redefining Compilation process to handle dependancies:
-COMPILE.c=$(CC) $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
+COMPILE.c=$(CC) -g $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
 CFLAGS=-Wall -Wextra -Werror
 CPPFLAGS=-I$(HEADERS_DIR)
 #Handling additional libraries
-LIBS=libs/libft
-LIBS_HEADERS_DIRS=libs/libft/includes
+LIBS=libft
+LIBS_HEADERS_DIRS=libft/includes
 LIBS_=$(LIBS:lib%=-l%)
 CPPFLAGS+=$(foreach hdir,$(LIBS_HEADERS_DIRS),-I$(hdir))
 

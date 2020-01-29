@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:30:18 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/21 15:30:25 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:50:00 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 static int	ft_pvadprintf(int fd, char const *str, va_list *pfargs)
 {
 	char const		*ostr;
-	t_out_buffer 	buffer;
-	t_pf_format 	format;
+	t_out_buffer	buffer;
+	t_pf_format		format;
 
 	t_out_buffer_init(&buffer, fd, write);
 	while (1)
@@ -32,14 +32,14 @@ static int	ft_pvadprintf(int fd, char const *str, va_list *pfargs)
 			pf_parse(&str, &format, pfargs);
 			if (format.char_conv)
 				if (pf_exec(&format, &buffer, pfargs) == PF_EXEC_ERROR)
-					break;
+					break ;
 		}
 		ostr = str;
 		while (*str && (*str != '%'))
 			str++;
 		if (ostr != str)
 			if (bufferize_buf(&buffer, ostr, str - ostr) == T_OUT_BUFFER_ERROR)
-				break;
+				break ;
 		if (!*str)
 			return (t_out_buffer_flush((&buffer)));
 	}

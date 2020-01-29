@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 17:08:49 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/21 17:10:39 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/29 18:38:37 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ int	conv_p(t_pf_format *fmt, t_out_buffer *buf, va_list *pfargs)
 	ft_bzero(&util, sizeof(util));
 	intp = va_arg(*pfargs, intptr_t);
 	util.str = ft_uitoa_base(intp, "0123456789abcdef");
-	util.lstr = ft_strlen(util.str);
+	if ((fmt->flags & FMT_PREC) && (fmt->prec == 0) && (intp == 0))
+		util.lstr = 0;
+	else
+		util.lstr = ft_strlen(util.str);
 	util.prefix = prefix;
 	util.lprefix = 2;
 	ret = conv_num(fmt, buf, &util);
