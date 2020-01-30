@@ -6,7 +6,7 @@
 /*   By: damouyal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 16:08:34 by damouyal          #+#    #+#             */
-/*   Updated: 2020/01/29 22:38:58 by damouyal         ###   ########.fr       */
+/*   Updated: 2020/01/30 13:19:17 by damouyal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define FMT_PREC 32
 # define FMT_WIDTH 64
 # define STR_FLAGS "0-#+ "
+# define FMT_MOD_NO 0
 # define FMT_MOD_H 1
 # define FMT_MOD_HH 2
 # define FMT_MOD_L 3

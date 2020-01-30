@@ -18,7 +18,7 @@ DEP_DIRS=$(sort $(call uniq,$(DEP_DIRS_)))
 DEP_FLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR_ROOT)/$*.d
 #Redefining Compilation process to handle dependancies:
 COMPILE.c=$(CC) $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -g
 CPPFLAGS=-I$(HEADERS_DIR)
 #Handling additional libraries
 LIBS=libft
@@ -32,6 +32,9 @@ endef
 
 .PHONY: all
 all: $(LIBS:%=%.a) $(NAME) install
+
+.PHONY: bonus
+bonus: all
 
 $(NAME):$(OBJS_FILES)
 	ar rc $(NAME) $(OBJS_FILES)
