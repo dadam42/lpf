@@ -44,9 +44,12 @@ $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c $(DEP_DIR_ROOT)/%.d | depdirs objdirs
 	$(COMPILE.c) $(OUTPUT_OPTION) $<
 
 .PHONY: install
-install:
-	cp srcs/includes/ft_printf.h $(INSTALL_DIR)
+install: | installdir
+	cp srcs/includes/ft_printf.h $(INSTALL_DIR)/
 
+.PHONY: installdir
+installdir:
+	mkdir -p $(INSTALL_DIR)
 .PHONY:clean
 clean:
 	rm -f $(OBJS_FILES)
@@ -59,6 +62,7 @@ depclean:
 fclean:clean depclean
 	rm -f $(NAME)
 	rm -f $(INSTALL_DIR)/ft_printf.h
+	rm -f $(OBJS_FILES)
 	$(foreach ldir,$(LIBS),$(MAKE) -C $(ldir) fclean;)
 
 $(foreach ldir,$(LIBS),$(call librule,$(ldir)))
