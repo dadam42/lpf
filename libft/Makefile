@@ -9,7 +9,7 @@ SRCS = ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr ft_memcmp ft
 		ft_lstadd_back ft_lstdelone ft_lstclear ft_lstiter ft_lstmap 
 SRCSDIR = srcs/ 
 INCLUDEDIR = includes/
-DFLAG=-g
+DFLAG=
 
 all : ${NAME}
 

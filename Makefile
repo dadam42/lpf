@@ -1,6 +1,5 @@
 NAME=libftprintf.a
-INSTALL_DIR=includes
-INSTALL_DIR?=.
+INSTALL_DIR=.#
 SRCS_DIR=srcs
 HEADERS_DIR=$(SRCS_DIR)/includes
 SRCS_FILES=srcs/convs/conv_c.c srcs/convs/conv_d.c srcs/convs/conv_error.c srcs/convs/conv_num.c srcs/convs/conv_p.c srcs/convs/conv_pe.c srcs/convs/conv_s.c srcs/convs/conv_str.c srcs/convs/conv_u.c srcs/convs/conv_ubase.c srcs/convs/conv_xl.c srcs/convs/conv_xu.c srcs/convs/conv_n.c srcs/format/format_rules.c srcs/output_field/output_field.c srcs/parser/pf_parser.c srcs/pf_exec.c srcs/pf_functions.c srcs/t_out_buffer/t_out_buffer.c
@@ -18,7 +17,7 @@ DEP_DIRS=$(sort $(call uniq,$(DEP_DIRS_)))
 DEP_FLAGS= -MT $@ -MMD -MP -MF $(DEP_DIR_ROOT)/$*.d
 #Redefining Compilation process to handle dependancies:
 COMPILE.c=$(CC) $(DEP_FLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH) -c
-CFLAGS=-Wall -Wextra -Werror -g
+CFLAGS=-Wall -Wextra -Werror
 CPPFLAGS=-I$(HEADERS_DIR)
 #Handling additional libraries
 LIBS=libft
@@ -37,7 +36,10 @@ all: $(LIBS:%=%.a) $(NAME) install
 bonus: all
 
 $(NAME):$(OBJS_FILES)
-	ar rc $(NAME) $(OBJS_FILES)
+	ar -x libft/libft.a
+	ar rc $(NAME) $(OBJS_FILES) *.o
+	rm -f *.o
+	rm -f "__.SYMDEF SORTED"
 	ranlib $(NAME)
 
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c $(DEP_DIR_ROOT)/%.d | depdirs objdirs
@@ -45,7 +47,7 @@ $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c $(DEP_DIR_ROOT)/%.d | depdirs objdirs
 
 .PHONY: install
 install: | installdir
-	cp srcs/includes/ft_printf.h $(INSTALL_DIR)/
+	cp srcs/includes/ftprintf.h $(INSTALL_DIR)/
 
 .PHONY: installdir
 installdir:
@@ -61,7 +63,7 @@ depclean:
 .PHONY:fclean
 fclean:clean depclean
 	rm -f $(NAME)
-	rm -f $(INSTALL_DIR)/ft_printf.h
+	rm -f $(INSTALL_DIR)/ftprintf.h
 	rm -f $(OBJS_FILES)
 	$(foreach ldir,$(LIBS),$(MAKE) -C $(ldir) fclean;)
 
